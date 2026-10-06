@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Harness local - Mapa NAP Weezie</title>
+  <link rel="stylesheet" href="../widget/vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="../widget/app/styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="toolbar">
+      <div class="toolbar-row">
+        <div class="field">
+          <label for="inputLat">Latitud</label>
+          <input id="inputLat" class="control" type="text">
+        </div>
+        <div class="field">
+          <label for="inputLng">Longitud</label>
+          <input id="inputLng" class="control" type="text">
+        </div>
+        <div class="field field-sm">
+          <label for="inputRadius">Radio (m)</label>
+          <input id="inputRadius" class="control" type="number" value="200">
+        </div>
+        <div class="field field-sm">
+          <label for="inputRadiusMdu">Radio MDU (m)</label>
+          <input id="inputRadiusMdu" class="control" type="number" value="200">
+        </div>
+        <div class="actions">
+          <button id="btnSearch" class="btn btn-primary" type="button">Buscar</button>
+          <button id="btnLocate" class="btn" type="button">Mi ubicacion</button>
+          <button id="btnReset" class="btn btn-ghost" type="button">Limpiar</button>
+        </div>
+      </div>
+      <div class="toolbar-row toolbar-row-secondary">
+        <label class="check"><input id="chkAvailable" type="checkbox" checked><span>Solo con puertos disponibles</span></label>
+        <label class="check"><input id="chkBuildings" type="checkbox" checked><span>Mostrar edificios (MDU)</span></label>
+        <label class="check"><input id="chkRadius" type="checkbox" checked><span>Mostrar radio</span></label>
+        <span id="status" class="status"></span>
+      </div>
+      <div id="stats" class="stats" hidden></div>
+    </header>
+
+    <main class="content">
+      <div id="map" class="map"></div>
+      <aside id="panel" class="panel">
+        <div class="panel-head">
+          <span id="panelTitle" class="panel-title">Resultados</span>
+          <button id="btnCollapse" class="panel-toggle" type="button">&#9776;</button>
+        </div>
+        <div id="panelBody" class="panel-body"><p class="empty">Indica una latitud y longitud.</p></div>
+        <div class="legend">
+          <span class="legend-item"><i class="dot dot-ok"></i>Puertos disponibles</span>
+          <span class="legend-item"><i class="dot dot-low"></i>Pocos puertos</span>
+          <span class="legend-item"><i class="dot dot-none"></i>Sin puertos</span>
+          <span class="legend-item"><i class="dot dot-building"></i>Edificio / MDU</span>
+        </div>
+      </aside>
+    </main>
+
+    <div id="toast" class="toast" hidden></div>
+  </div>
+
+  <script src="./../widget/vendor/leaflet/leaflet.js"></script>
+  <script>
+    // Harness local: apunta al proxy en tu maquina y evita la lectura del registro.
+    window.WIDGET_CONFIG = Object.assign({}, window.__WIDGET_CONFIG__ || {});
+  </script>
+  <script src="../widget/app/config.js"></script>
+  <script>
+    window.WIDGET_CONFIG.apiBase = 'http://127.0.0.1:3001/api/zoho/exp/v1/weezie/map';
+    window.WIDGET_CONFIG.autoReadFromRecord = false;
+  </script>
+  <script src="../widget/app/utils.js"></script>
+  <script src="../widget/app/api.js"></script>
+  <script src="../widget/app/zoho.js"></script>
+  <script src="../widget/app/markers.js"></script>
+  <script src="../widget/app/popup.js"></script>
+  <script src="../widget/app/map.js"></script>
+  <script src="../widget/app/panel.js"></script>
+  <script src="../widget/app/main.js"></script>
+</body>
+</html>

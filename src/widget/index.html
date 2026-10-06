@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mapa NAP Weezie</title>
+
+  <!-- Leaflet servido localmente: los widgets de Zoho no deben depender de CDN -->
+  <link rel="stylesheet" href="./vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="./app/styles.css">
+</head>
+<body>
+  <div class="app" id="app">
+
+    <header class="toolbar">
+      <div class="toolbar-row">
+        <div class="field">
+          <label for="inputLat">Latitud</label>
+          <input id="inputLat" class="control" type="text" inputmode="decimal" autocomplete="off" placeholder="9.042429">
+        </div>
+        <div class="field">
+          <label for="inputLng">Longitud</label>
+          <input id="inputLng" class="control" type="text" inputmode="decimal" autocomplete="off" placeholder="-69.755618">
+        </div>
+        <div class="field field-sm">
+          <label for="inputRadius">Radio (m)</label>
+          <input id="inputRadius" class="control" type="number" min="10" max="5000" step="10" value="200">
+        </div>
+        <div class="field field-sm">
+          <label for="inputRadiusMdu">Radio MDU (m)</label>
+          <input id="inputRadiusMdu" class="control" type="number" min="10" max="5000" step="10" value="200">
+        </div>
+        <div class="actions">
+          <button id="btnSearch" class="btn btn-primary" type="button">Buscar</button>
+          <button id="btnLocate" class="btn" type="button" title="Usar mi ubicación">Mi ubicación</button>
+          <button id="btnReset" class="btn btn-ghost" type="button">Limpiar</button>
+        </div>
+      </div>
+
+      <div class="toolbar-row toolbar-row-secondary">
+        <label class="check">
+          <input id="chkAvailable" type="checkbox" checked>
+          <span>Solo con puertos disponibles</span>
+        </label>
+        <label class="check">
+          <input id="chkBuildings" type="checkbox" checked>
+          <span>Mostrar edificios (MDU)</span>
+        </label>
+        <label class="check">
+          <input id="chkRadius" type="checkbox" checked>
+          <span>Mostrar radio</span>
+        </label>
+        <span id="status" class="status" role="status" aria-live="polite"></span>
+      </div>
+
+      <div id="stats" class="stats" hidden></div>
+    </header>
+
+    <main class="content">
+      <div id="map" class="map" role="application" aria-label="Mapa de ubicaciones disponibles"></div>
+
+      <button id="btnRestorePanel" class="btn-restore" type="button" title="Mostrar resultados" hidden>&#9776;</button>
+
+      <aside id="panel" class="panel" aria-label="Resultados">
+        <div class="panel-head">
+          <span id="panelTitle" class="panel-title">Resultados</span>
+          <button id="btnCollapse" class="panel-toggle" type="button" title="Ocultar panel">&#9776;</button>
+        </div>
+        <div style="padding: 8px; border-bottom: 1px solid var(--border); background: #f8f9fa;">
+          <input id="panelSearch" class="control" type="text" placeholder="Buscar por nombre, ID..." style="width: 100%;">
+        </div>
+        <div id="panelBody" class="panel-body">
+          <p class="empty">Indica una latitud y longitud para buscar ubicaciones disponibles.</p>
+        </div>
+        <div class="legend">
+          <span class="legend-item"><i class="dot dot-ok"></i>Puertos disponibles</span>
+          <span class="legend-item"><i class="dot dot-low"></i>Pocos puertos</span>
+          <span class="legend-item"><i class="dot dot-none"></i>Sin puertos</span>
+          <span class="legend-item"><i class="dot dot-building"></i>Edificio / MDU</span>
+        </div>
+      </aside>
+    </main>
+
+    <div id="toast" class="toast" hidden></div>
+  </div>
+
+  <script src="./vendor/leaflet/leaflet.js"></script>
+  <script src="./app/config.js"></script>
+  <script src="./app/utils.js"></script>
+  <script src="./app/api.js"></script>
+  <script src="./app/zoho.js"></script>
+  <script src="./app/markers.js"></script>
+  <script src="./app/popup.js"></script>
+  <script src="./app/map.js"></script>
+  <script src="./app/panel.js"></script>
+  <script src="./app/main.js"></script>
+</body>
+</html>

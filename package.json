@@ -1,0 +1,24 @@
+{
+  "name": "weezie-map-widget",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Widget de Zoho CRM con Leaflet/OpenStreetMap + proxy Node para consultar ubicaciones NAP (Weezie) cercanas",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node proxy/server.js",
+    "dev": "node --watch proxy/server.js",
+    "vendor": "node tools/vendor.mjs",
+    "build": "node tools/build.mjs",
+    "smoke": "node tools/smoke.mjs"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "archiver": "^6.0.2",
+    "leaflet": "^1.9.4"
+  }
+}
